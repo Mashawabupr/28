@@ -8,7 +8,7 @@ const IngredientList = (props) => {
       <h2>Loaded Ingredients</h2>
       <ul>
         {props.ingredients.map((it) => (
-          <li key={it.id}>
+          <li key={it.id} onClick={props.onRemoveItem.bind(this, it.id)}>
             <span>{it.name}</span>
             <span>{it.amount}x</span>
           </li>
@@ -17,5 +17,5 @@ const IngredientList = (props) => {
     </section>
   );
 };
-//onClick={props.onRemoveItem.bind(this, it.id)}
+
 export default IngredientList;

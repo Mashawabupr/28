@@ -9,15 +9,21 @@ const IngredientForm = React.memo((props) => {
   const submitHandler = (event) => {
     let data = { id: Math.random(), name, amount };
     event.preventDefault();
+    if (data.name.trim().length > 0 && data.amount.trim().length > 0) {
+      props.onData();
 
-    props.onData();
-
-    fetch("https://react1-9a97e-default-rtdb.firebaseio.com/ingredients.json", {
-      method: "POST",
-      body: JSON.stringify(data),
-    });
-    setAmount("");
-    setName("");
+      fetch(
+        "https://react1-9a97e-default-rtdb.firebaseio.com/ingredients.json",
+        {
+          method: "POST",
+          body: JSON.stringify(data),
+        }
+      );
+      setAmount("");
+      setName("");
+    } else {
+      alert("please enter something!");
+    }
 
     // ...
   };
