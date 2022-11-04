@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import "./IngredientList.css";
+import Context from "../Context";
 
-const IngredientList = (props) => {
+const IngredientList = () => {
+  let contextData = useContext(Context);
   return (
     <section className="ingredient-list">
       <h2>Loaded Ingredients</h2>
       <ul>
-        {props.ingredients.map((it) => (
-          <li key={it.id} onClick={props.onRemoveItem.bind(this, it.id)}>
+        {contextData.ingredients.map((it) => (
+          <li key={it.id} onClick={contextData.onRemoveItem.bind(this, it.id)}>
             <span>{it.name}</span>
             <span>{it.amount}x</span>
           </li>

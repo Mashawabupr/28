@@ -1,16 +1,18 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Card from "../UI/Card";
 import "./IngredientForm.css";
-
+import Context from "../Context";
 const IngredientForm = React.memo((props) => {
+  let contextData = useContext(Context);
+
   let [name, setName] = useState("");
   let [amount, setAmount] = useState("");
   const submitHandler = (event) => {
     let data = { id: Math.random(), name, amount };
     event.preventDefault();
     if (data.name.trim().length > 0 && data.amount.trim().length > 0) {
-      props.onData();
+      contextData.onData();
 
       fetch(
         "https://react1-9a97e-default-rtdb.firebaseio.com/ingredients.json",
